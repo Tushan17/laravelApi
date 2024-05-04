@@ -24,10 +24,8 @@ class RegisteredUserController extends Controller
             'username' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            "serialNumber" => 'string',
-            "chasisNumber" => 'string',
-            "IsActive" => "boolean",
-            "IsRevoked" => "boolean"
+            "serialNumber" => ['string', 'nullable'],
+            "chasisNumber" => ['string', 'nullable']
         ]);
 
         $user = User::create([
@@ -35,9 +33,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'serialNumber' => $request->serialNumber,
-            'chasisNumber' => $request->chasisNumber,
-            'IsActive' => $request->IsActive,
-            'IsRevoked' => $request->IsRevoked
+            'chasisNumber' => $request->chasisNumber
         ]);
 
 
