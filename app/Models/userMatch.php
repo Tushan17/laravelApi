@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class usermatch extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'user1',
+        'user2'
+    ];
 
     public function chats()
     {

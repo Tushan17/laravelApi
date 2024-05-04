@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class usercategory extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'categoryId',
+        'userId'
+    ];
 }

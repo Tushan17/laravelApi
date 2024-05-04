@@ -9,6 +9,10 @@ class interest extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'interest_Name'
+    ];
+
     public function userinterests()
     {
         return $this->hasMany(userinterest::class);

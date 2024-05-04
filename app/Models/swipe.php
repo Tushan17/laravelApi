@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class swipe extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'swipeDirection'
+    ];
+
+    public function userswipes()
+    {
+        return $this->hasMany(userswipe::class);
+    }
 }
