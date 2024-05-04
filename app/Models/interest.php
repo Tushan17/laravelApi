@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class interest extends Model
 {
     use HasFactory;
+
+    public function userinterests()
+    {
+        return $this->hasMany(userinterest::class);
+    }
 }

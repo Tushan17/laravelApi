@@ -47,4 +47,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function userswipes()
+    {
+        return $this->hasMany(userswipe::class);
+    }
+
+    public function usermatches()
+    {
+        return $this->hasMany(usermatch::class);
+    }
+
+    public function usercategories()
+    {
+        return $this->hasMany(usercategory::class);
+    }
 }

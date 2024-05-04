@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class usermatch extends Model
 {
     use HasFactory;
+
+    public function chats()
+    {
+        return $this->hasMany(chat::class);
+    }
 }
