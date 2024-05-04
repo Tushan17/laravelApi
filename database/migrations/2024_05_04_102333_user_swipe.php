@@ -15,11 +15,13 @@ return new class extends Migration {
             $table->id('userSwipeId');
             $table->unsignedBigInteger('userswipes')->unique();
             $table->unsignedBigInteger('onuser')->unique();
-            $table->boolean('swipestatus');
+            $table->unsignedBigInteger('swipesId');
             $table->timestamps();
 
             $table->foreign("userswipes")->references("id")->on('users');
             $table->foreign("onuser")->references("id")->on('users');
+            $table->foreign("swipesId")->references("swipeId")->on('swipes');
+
         });
     }
 
