@@ -51,7 +51,7 @@ class roleController extends Controller
             'data' => $data
         ];
 
-        return $response;
+        return response()->json($response);
     }
 
     /**
@@ -69,7 +69,7 @@ class roleController extends Controller
             'data' => $data
         ];
 
-        return $response;
+        return response()->json($response);
     }
 
     /**
@@ -94,7 +94,7 @@ class roleController extends Controller
             'status' => $status
         ];
 
-        return response()->json($data, 200);
+        return response()->json($data);
 
     }
 

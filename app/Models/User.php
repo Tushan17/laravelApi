@@ -48,10 +48,10 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function userswipes()
-    {
-        return $this->hasMany(userswipe::class);
-    }
+    // public function userswipes()
+    // {
+    //     return $this->hasMany(userswipe::class);
+    // }
 
     public function usermatches()
     {

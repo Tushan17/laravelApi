@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\userMatchRequest;
 use App\Models\usermatch;
 use Illuminate\Http\Request;
 
@@ -33,9 +34,23 @@ class userMatchController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(userMatchRequest $userMatchRequest)
     {
         //
+        $userMatchRequest->validated();
+
+        $userMatch = usermatch::create([
+            'user1' => $userMatchRequest->user1,
+            'user2' => $userMatchRequest->user2
+
+        ]);
+
+        $response = [
+            'status' => 200,
+            'data' => $userMatch
+        ];
+
+        return response()->json($response);
     }
 
     /**
@@ -65,8 +80,15 @@ class userMatchController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $userMatchId)
     {
         //
+        $role = usermatch::where('userMatchId', $userMatchId)->delete();
+
+        $status = $role == 1 ? true : false;
+        $data = [
+            'status' => $status
+        ];
+        return response()->json($data);
     }
 }

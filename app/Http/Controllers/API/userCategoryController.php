@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\userCategoryRequest;
 use App\Models\usercategory;
 use Illuminate\Http\Request;
 
@@ -34,9 +35,23 @@ class userCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(userCategoryRequest $userCategoryRequest)
     {
         //
+        $userCategoryRequest->validated();
+
+        $userCategory = usercategory::create([
+            'categoryId' => $userCategoryRequest->rolename,
+            'userId' => $userCategoryRequest->rolename
+        ]);
+
+
+        $response = [
+            'status' => 200,
+            'data' => $userCategory
+        ];
+
+        return response()->json($response);
     }
 
     /**
@@ -58,9 +73,18 @@ class userCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(userCategoryRequest $userCategoryRequest, string $id)
     {
         //
+        $req = $userCategoryRequest->validated();
+
+        $role = usercategory::where('id', $id)->update($req);
+        $status = $role == 1 ? true : false;
+        $data = [
+            'status' => $status
+        ];
+
+        return response()->json($data);
     }
 
     /**
@@ -69,5 +93,12 @@ class userCategoryController extends Controller
     public function destroy(string $id)
     {
         //
+        $role = usercategory::where('id', $id)->delete();
+
+        $status = $role == 1 ? true : false;
+        $data = [
+            'status' => $status
+        ];
+        return response()->json($data);
     }
 }

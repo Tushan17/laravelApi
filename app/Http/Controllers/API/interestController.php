@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\interestRequest;
 use App\Models\interest;
 use Illuminate\Http\Request;
 
@@ -33,9 +34,22 @@ class interestController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(interestRequest $interestRequest)
     {
         //
+        $interestRequest->validated();
+
+        $interest = interest::create([
+            'interest_Name' => $interestRequest->interest_Name
+        ]);
+
+
+        $response = [
+            'status' => 200,
+            'data' => $interest
+        ];
+
+        return response()->json($response);
     }
 
     /**
@@ -65,8 +79,15 @@ class interestController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $interestId)
     {
         //
+        $role = interest::where('roleid', $interestId)->delete();
+
+        $status = $role == 1 ? true : false;
+        $data = [
+            'status' => $status
+        ];
+        return response()->json($data);
     }
 }
