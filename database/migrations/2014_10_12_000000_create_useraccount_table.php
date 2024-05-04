@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->string('password');
             $table->boolean('IsActive');
             $table->boolean('IsRevoked');
-            $table->unsignedInteger('views');
+            $table->unsignedInteger('views')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

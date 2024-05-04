@@ -21,6 +21,11 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'serialNumber',
+        'chasisNumber',
+        'IsActive',
+        'IsRevoked',
+        'views'
     ];
 
     /**
