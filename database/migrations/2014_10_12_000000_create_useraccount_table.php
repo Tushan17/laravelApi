@@ -18,8 +18,8 @@ return new class extends Migration {
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->boolean('IsActive');
-            $table->boolean('IsRevoked');
+            $table->boolean('IsActive')->default(true);
+            $table->boolean('IsRevoked')->default(false);
             $table->unsignedInteger('views')->default(0);
             $table->rememberToken();
             $table->timestamps();
