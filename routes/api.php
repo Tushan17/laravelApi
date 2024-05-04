@@ -1,4 +1,9 @@
 <?php
+use App\Http\Controllers\API\categoryController;
+use App\Http\Controllers\API\chatController;
+use App\Http\Controllers\API\userCategoryController;
+use App\Http\Controllers\API\userMatchController;
+use App\Http\Controllers\API\userSwipeController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\NewPasswordController;
@@ -62,8 +67,17 @@ Route::post('/email/verification-notification', [EmailVerificationNotificationCo
     ->middleware(['auth', 'throttle:6,1'])
     ->name('verification.send');
 
-//FIXME:
+//FIXME: done works
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth:sanctum')
     ->name('logout');
+
+
+//api functionality
+
+Route::resource('userswipe', userSwipeController::class);
+Route::resource('usermatch', userMatchController::class);
+Route::resource('chat', chatController::class);
+Route::resource('category', categoryController::class);
+Route::resource('usercategory', userCategoryController::class);
 

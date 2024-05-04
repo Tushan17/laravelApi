@@ -3,14 +3,29 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\category;
 use Illuminate\Http\Request;
 
-class newrolec extends Controller
+class categoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
+    {
+        //
+        $category = category::all();
+        $response = [
+            'status' => 200,
+            'data' => $category
+        ];
+        return response()->json($response);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
     {
         //
     }
@@ -21,13 +36,20 @@ class newrolec extends Controller
     public function store(Request $request)
     {
         //
-        return $request->rolename;
     }
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
     {
         //
     }
