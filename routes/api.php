@@ -1,7 +1,9 @@
 <?php
 use App\Http\Controllers\API\categoryController;
 use App\Http\Controllers\API\chatController;
+use App\Http\Controllers\API\interestController;
 use App\Http\Controllers\API\userCategoryController;
+use App\Http\Controllers\API\userInterestController;
 use App\Http\Controllers\API\userMatchController;
 use App\Http\Controllers\API\userSwipeController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -80,4 +82,6 @@ Route::resource('usermatch', userMatchController::class);
 Route::resource('chat', chatController::class);
 Route::resource('category', categoryController::class);
 Route::resource('usercategory', userCategoryController::class);
+Route::resource('userinterest', userInterestController::class);
+Route::resource('interest', interestController::class);
 
