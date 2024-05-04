@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\userInterest;
 use Illuminate\Http\Request;
 
-class userController extends Controller
+class userInterestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,6 +14,12 @@ class userController extends Controller
     public function index()
     {
         //
+        $userInterest = userInterest::all();
+        $response = [
+            'status' => 200,
+            'data' => $userInterest
+        ];
+        return response()->json($response);
     }
 
     /**
@@ -59,15 +65,8 @@ class userController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $userid)
+    public function destroy(string $id)
     {
         //
-        User::where('id', $userid)->delete();
-
-        $data = [
-            'message' => 'user deleted'
-        ];
-
-        return response()->json($data);
     }
 }
